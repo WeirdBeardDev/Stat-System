@@ -2,21 +2,21 @@
 
 namespace StatSystem.Example
 {
-public sealed class ModifierOperationsBaseAbsoluteReduction : ModifierOperationsBase
-{
-   public ModifierOperationsBaseAbsoluteReduction(int capacity) : base(capacity) { }
-   public ModifierOperationsBaseAbsoluteReduction() { }
-
-   public override float CalculateModifiersValue(float baseValue, float currentValue)
+   public sealed class ModifierOperationsBaseAbsoluteReduction : ModifierOperationsBase
    {
-      var biggestModifier = 0f;
+      public ModifierOperationsBaseAbsoluteReduction(int capacity) : base(capacity) { }
+      public ModifierOperationsBaseAbsoluteReduction() { }
 
-      for (var i = 0; i < Modifiers.Count; i++)
-         biggestModifier = Mathf.Max(biggestModifier, Modifiers[i]);
+      public override float CalculateModifiersValue(float baseValue, float currentValue)
+      {
+         var biggestModifier = 0f;
 
-      var modifierValue = biggestModifier == 0f ? 0f : baseValue * (1 - biggestModifier) - currentValue;
+         for (var i = 0; i < Modifiers.Count; i++)
+            biggestModifier = Mathf.Max(biggestModifier, Modifiers[i]);
 
-      return modifierValue;
+         var modifierValue = biggestModifier == 0f ? 0f : baseValue * (1 - biggestModifier) - currentValue;
+
+         return modifierValue;
+      }
    }
-}
 }
